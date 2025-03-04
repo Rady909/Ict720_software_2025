@@ -3,9 +3,9 @@ Repo for demo idea, model, and code for ICT720 course of 2025
 
 ## Member: 
 
-Thanawin Ungkananuchat
-Sahatus Asawadilockchai
-Rady LY
+1. Thanawin Ungkananuchat
+2. Sahatus Asawadilockchai
+3. Rady LY
 
 ## User stories
 
