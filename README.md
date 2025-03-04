@@ -1,7 +1,7 @@
 # Project coming soon...
 Repo for demo idea, model, and code for ICT720 course of 2025
 
-## Student: Thanawin Ungkananuchat, Sahatus Asawadilockchai, Rady LY
+## Member: Thanawin Ungkananuchat, Sahatus Asawadilockchai, Rady LY
 
 ## User stories
 
