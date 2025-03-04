@@ -1,6 +1,8 @@
 # Ict720_software_2025
 Repo for demo idea, model, and code for ICT720 course of 2025
 
+## Student: Thanawin Ungkananuchat, Sahatus Asawadilockchai, Rady LY
+
 ## User stories
 
 1. As a professor, I want to know A is in my lab, so that I can go and meet A.
