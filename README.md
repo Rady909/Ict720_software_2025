@@ -23,7 +23,7 @@ This project integrates **AI & IoT** for real-time **production line monitoring*
 - **Dashboard**: Real-time insights via **Grafana / Flask / Firebase**.  
 
 ## Tech Stack  
-- **Hardware**: ESP32-S3 (T-SIMCAM), QR Scanner  
+- **Hardware**: ESP32-S3 (T-SIMCAM), Laptop Camera
 - **AI Models**: Google Vision API / TinyML (ESP-DL)  
 - **Backend**: Flask, Firebase, PostgreSQL  
 - **Frontend**: Grafana / React / Node.js  
