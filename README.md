@@ -1,30 +1,54 @@
-# Project coming soon...
-Repo for demo idea, model, and code for ICT720 course of 2025
+# ProdScan - AI-Based Product Identification System  
 
-## Member: 
+Repo for demo idea, model, and code for ICT720 course of 2025.
 
-1. Thanawin Ungkananuchat
-2. Sahatus Asawadilockchai
-3. Rady LY
+## Team Members  
 
-## User stories
+1. Thanawin Ungkananuchat  
+2. Sahatus Asawadilockchai  
+3. Rady LY  
 
-1. As a production manager, I want to know the status of queue in production lines, so that I can evaluate if any issue happens. 
-2. As a production operator, I want to register a product to be handled, so that I can start working. 
-3. As a production manager, I want to know the efficiency of production lines, so that I can evaluate the production performance. 
-   
-## Project Overview  
-This project integrates **AI & IoT** for real-time **production line monitoring**, **product registration**, and **efficiency tracking** using **Laptop Camera** and **Google Vision API**.  
+---
 
-## Features  
-- **Queue Monitoring**: AI detects and tracks products in the production line.  
-- **Product Registration**: Operators register products via **QR code scanning** or a **web app**.  
-- **Efficiency Tracking**: AI measures processing time and identifies bottlenecks.  
-- **Dashboard**: Real-time insights via **Grafana / Flask / Firebase**.  
+## **User Stories**  
 
-## Tech Stack  
-- **Hardware**: ESP32-S3 (T-SIMCAM), Laptop Camera
-- **AI Models**: Google Vision API / TinyML (ESP-DL)  
-- **Backend**: Flask, Firebase, PostgreSQL  
-- **Frontend**: Grafana / React / Node.js  
+1. **As a consumer**, I want to scan any product using my smartphone camera, so that I can get details about it instantly.  
+2. **As a store manager**, I want to identify products in my inventory using AI, so that I can quickly check specifications and pricing.  
+3. **As a production operator**, I want to register and categorize products efficiently, so that I can optimize stock management.  
 
+---
+
+## **Project Overview**  
+This project enables **real-time product recognition** using **a smartphone camera and AI**.  
+Users can scan **any random product (electronics, food, household items, etc.)**, and the system will identify it using **Google Gemini API**, providing details like **brand, release date, price, and specifications**.
+
+---
+
+## **Features**  
+Scan any product using a smartphone camera
+AI-based product recognition using Google Gemini API
+Displays brand, release date, key specifications, and price (if available)
+Works on mobile devices without app installation
+HTTPS support via Ngrok for iOS compatibility
+Supports multiple product categories (smartphones, electronics, food, etc.)
+
+---
+
+## **Tech Stack**  
+
+| Component  | Technology Used |
+|------------|----------------|
+| **Frontend (Web UI)** | HTML, JavaScript, WebRTC API |
+| **Backend (API Server)** | Flask (Python) |
+| **AI Model (Product Recognition)** | Google Gemini API |
+| **Camera Access** | WebRTC API (Back Camera) |
+| **Secure Connection** | Ngrok (for HTTPS) |
+| **Product Data Retrieval** | Web Scraping / External APIs (Amazon, Walmart, etc.) |
+
+---
+
+## **Setup & Installation**  
+
+### **Install Dependencies**  
+```bash
+pip install flask requests
