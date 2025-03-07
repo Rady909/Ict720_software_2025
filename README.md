@@ -1,6 +1,8 @@
 # ProdScan - AI-Based Product Identification System  
 
 Repo for demo idea, model, and code for ICT720 course of 2025.
+![Product Flowchart](product_ws/Product.png)
+
 
 ## Team Members  
 
