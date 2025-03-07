@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Scanner</title>
+</head>
+<body>
+    <h2>Scan a Product</h2>
+    <video id="video" autoplay playsinline></video>
+    <button onclick="capture()">Capture</button>
+    <canvas id="canvas" style="display:none;"></canvas>
+    <p id="result"></p>
+
+    <script>
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const context = canvas.getContext('2d');
+
+        async function startCamera() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ 
+                    video: { facingMode: "environment" }  // 🔹 Forces the back camera
+                });
+                video.srcObject = stream;
+            } catch (err) {
+                alert("Camera access denied or not supported: " + err);
+            }
+        }
+
+        function capture() {
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            context.drawImage(video, 0, 0);
+            const imageData = canvas.toDataURL('image/png');
+            sendToServer(imageData);
+        }
+
+        async function sendToServer(imageData) {
+            const response = await fetch('/scan', {
+                method: 'POST',
+                body: JSON.stringify({ image: imageData }),
+                headers: { 'Content-Type': 'application/json' }
+            });
+
+            const result = await response.json();
+            document.getElementById('result').innerText = result.message;
+        }
+
+        startCamera();
+    </script>
+</body>
+</html>
+
