@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 # Google Gemini API Configuration
 GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent"
-API_KEY = "AIzaSyAa3WEZZG_JnVmGGgFIlD9UtRaCRkKJa80"  # 🔹 Replace with your actual API key
+API_KEY = "---"  # 🔹 Replace with your actual API key
 
 def analyze_image_with_gemini(image_data):
     """Send the image to Google Gemini API for product detection."""
