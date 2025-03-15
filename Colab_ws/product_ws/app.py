@@ -7,10 +7,10 @@ from datetime import datetime
 app = Flask(__name__, static_folder="static")
 
 # API Keys
-GEMINI_API_KEY = "AIzaSyAa3WEZZG_JnVmGGgFIlD9UtRaCRkKJa80"  # Replace with your Google Gemini API Key
+GEMINI_API_KEY = "---"  # Replace with your Google Gemini API Key
 GEMINI_API_URL = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={GEMINI_API_KEY}"
-GOOGLE_SEARCH_API_KEY = "AIzaSyD6yOh1Wdh0RBz50EDYUNTNKBFcvnQNmMs"  # Replace with your Google Search API Key
-GOOGLE_SEARCH_ENGINE_ID = "66eb8e930e15d4758"  # Your Programmable Search Engine ID
+GOOGLE_SEARCH_API_KEY = "---"  # Replace with your Google Search API Key
+GOOGLE_SEARCH_ENGINE_ID = "---"  # Your Programmable Search Engine ID
 GOOGLE_SEARCH_URL = "https://www.googleapis.com/customsearch/v1"
 
 def clean_text(text):
