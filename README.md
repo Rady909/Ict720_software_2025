@@ -1,7 +1,7 @@
 # ProdScan - AI-Based Product Identification System
 
 Repo for demo idea, model, and code for ICT720 course of 2025.
-![Product Flowchart](Product_ws/Product.png)
+![Product Flowchart](product_ws/Product.png)
 
 ## Team Members
 1. Thanawin Ungkananuchat  
@@ -28,26 +28,25 @@ Users can scan **any random product (electronics, food, household items, etc.)**
 - AI-based product recognition using Google Gemini API
 - Displays brand, release date, key specifications, and price (if available)
 - Works on mobile devices without app installation
-- HTTPS support via Ngrok for iOS compatibility
+- HTTPS support via Ngrok for all device 
 - Supports multiple product categories (smartphones, electronics, food, etc.)
-- **QR Code Tracking**: Number of users scanning the QR code updates in real-time
-- **Integration with 5Strack IoT Development Kit WM8978** for tracking and scanning
+- **Integration with 5Strack IoT Development Kit WM8978** QR display to website ProdScan and online shop
 
 ---
 
 ## **Scan Results**
 When a user scans a product, the system displays the product details in real-time. Example result:
 
-![Scan Result](image/scan_result.png)
+![Scan Result](product_ws/results.png)
 
 ### **Example Output:**
-- **Product Name**: UNI-Air Air Conditioner
-- **Brand**: UNI-Air
-- **Brand Details**: Specializes in home comfort and purification
-- **Release Date**: Not found
-- **Usage**: Cooling and dehumidifying indoor spaces
-- **Price Information**: Links to online marketplaces
-- **Estimate Price**: ฿8000
+- **Product Name**: Huawei Mate 50 Pro  
+- **Brand**: Huawei  
+- **Brand Details**: Huawei is a Chinese multinational technology corporation  
+- **Release Date**: September 2022  
+- **Usage**: High-end smartphone for communication, photography, entertainment, and productivity  
+- **Price Information**: [Lazada - Huawei Mate 50 Pro](#), [Shopee - Huawei Mate 50 Pro](#)  
+- **Estimate Price**: ฿40990  
 
 Videos demonstrating the scanning process will be available soon.
 
@@ -80,6 +79,8 @@ The scanned product data is stored in an SQLite database with the following sche
 | **Secure Connection** | Ngrok (for HTTPS) |
 | **Product Data Retrieval** | Web Scraping / External APIs (Amazon, Walmart, etc.) |
 | **Hardware Integration** | 5Strack IoT Dev Kit WM8978 |
+
+![hardware Result](product_ws/hardware.png)
 
 ---
 
