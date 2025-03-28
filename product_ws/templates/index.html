@@ -3,25 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Scanner</title>
+    <title>ProdScan - AI Product Scanner</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #FFFFFF; 
+            background-size: cover;
+        }
+        #logo {
+            width: 150px;
+            margin-top: 20px;
+        }
+        #video {
+            width: 90%;
+            max-width: 400px;
+            border: 2px solid white;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        #scan-button {
+            background: url('/static/GUI/Clicker.png') no-repeat center;
+            background-size: contain;
+            width: 120px;
+            height: 50px;
+            border: none;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        #scan-button:active {
+            transform: scale(0.95);
+        }
+        #result-box {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px auto;
+            max-width: 400px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+            text-align: left;
+            display: none;
+        }
+        h3 {
+            color: black;
+        }
+    </style>
 </head>
 <body>
-    <h2>Scan a Product</h2>
+
+    <img id="logo" src="/static/GUI/Logo.png" alt="Product Scanner Logo">
     <video id="video" autoplay playsinline></video>
-    <button onclick="capture()">Capture</button>
+    <button id="scan-button" onclick="capture()"></button>
     <canvas id="canvas" style="display:none;"></canvas>
-    <p id="result"></p>
+
+    <!-- Product Details Box -->
+    <div id="result-box">
+        <h3>Product Details</h3>
+        <p id="result-text">Ready to Scan...</p>
+    </div>
+
+    <!-- Google Programmable Search Engine -->
+    <script async src="https://cse.google.com/cse.js?cx=66eb8e930e15d4758"></script>
+    <div class="gcse-search"></div>
 
     <script>
         const video = document.getElementById('video');
         const canvas = document.getElementById('canvas');
         const context = canvas.getContext('2d');
+        const resultBox = document.getElementById('result-box');
+        const resultText = document.getElementById('result-text');
 
         async function startCamera() {
             try {
-                const stream = await navigator.mediaDevices.getUserMedia({ 
-                    video: { facingMode: "environment" }  // 🔹 Forces the back camera
-                });
+                const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
                 video.srcObject = stream;
             } catch (err) {
                 alert("Camera access denied or not supported: " + err);
@@ -29,6 +83,8 @@
         }
 
         function capture() {
+            resultBox.style.display = "block";
+            resultText.innerText = "Scanning...";
             canvas.width = video.videoWidth;
             canvas.height = video.videoHeight;
             context.drawImage(video, 0, 0);
@@ -44,11 +100,10 @@
             });
 
             const result = await response.json();
-            document.getElementById('result').innerText = result.message;
+            resultText.innerHTML = result.message;
         }
 
         startCamera();
     </script>
 </body>
 </html>
-
