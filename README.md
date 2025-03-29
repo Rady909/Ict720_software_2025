@@ -71,7 +71,10 @@ When a user scans a product, the system displays the product details in real-tim
 - **Price Information**: [Lazada - Huawei Mate 50 Pro](#), [Shopee - Huawei Mate 50 Pro](#)  
 - **Estimate Price**: ฿40,990  
 
-Videos demonstrating the scanning process will be available soon.
+Videos demonstrating the scanning process
+
+[Click here to watch the demo video](https://drive.google.com/file/d/1kA811W3gAi2b2jjx4srOBHYRYjY5ikuF/view?usp=drivesdk)
+
 
 ---
 
