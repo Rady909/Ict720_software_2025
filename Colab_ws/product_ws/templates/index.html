@@ -3,23 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ProdScan - AI-powered product scanner that identifies products using your camera">
     <title>ProdScan - AI Product Scanner</title>
     <style>
-        body {
-            text-align: center;
-            font-family: Arial, sans-serif;
+        :root {
+            --primary-color: #4285f4;
+            --secondary-color: #34a853;
+            --text-color: #333;
+            --light-gray: #f5f5f5;
+            --border-radius: 10px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
         }
+        
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-gray);
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        header {
+            margin-bottom: 2rem;
+        }
+        
         #logo {
             width: 150px;
-            margin-top: 20px;
+            height: auto;
+            margin: 0 auto;
+            display: block;
         }
-        #video {
+        
+        .camera-container {
+            position: relative;
             width: 90%;
             max-width: 400px;
-            border: 2px solid white;
-            border-radius: 10px;
-            margin-top: 20px;
+            margin: 0 auto 1.5rem;
         }
+        
+        #video {
+            width: 100%;
+            border: 3px solid white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            background: #000;
+        }
+        
         #scan-button {
             background: url('{{ url_for('static_files', filename='GUI/Clicker.png') }}') no-repeat center;
             background-size: contain;
@@ -27,42 +63,92 @@
             height: 50px;
             border: none;
             cursor: pointer;
-            margin-top: 15px;
+            margin: 1rem 0;
+            transition: var(--transition);
         }
+        
+        #scan-button:hover {
+            opacity: 0.9;
+        }
+        
         #scan-button:active {
             transform: scale(0.95);
         }
+        
         #result-box {
             background: white;
-            border-radius: 10px;
-            padding: 15px;
-            margin: 20px auto;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 1.5rem auto;
+            width: 90%;
             max-width: 400px;
-            box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+            box-shadow: var(--box-shadow);
             text-align: left;
             display: none;
         }
-        h3 {
-            color: black;
+        
+        #result-box h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            border-bottom: 2px solid var(--light-gray);
+            padding-bottom: 0.5rem;
+        }
+        
+        #result-text {
+            margin-bottom: 0;
+        }
+        
+        .loading {
+            color: #666;
+            font-style: italic;
+        }
+        
+        footer {
+            margin-top: auto;
+            padding: 1rem 0;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        canvas {
+            display: none;
+        }
+        
+        .gcse-search {
+            margin: 2rem auto;
+            width: 90%;
+            max-width: 600px;
         }
     </style>
 </head>
 <body>
+    <header>
+        <img id="logo" src="{{ url_for('static_files', filename='GUI/Logo.png') }}" alt="ProdScan Logo" loading="lazy">
+        <h1>ProdScan AI Product Scanner</h1>
+    </header>
 
-    <img id="logo" src="{{ url_for('static_files', filename='GUI/Logo.png') }}" alt="Product Scanner Logo">
-    <video id="video" autoplay playsinline></video>
-    <button id="scan-button" onclick="capture()"></button>
-    <canvas id="canvas" style="display:none;"></canvas>
+    <main>
+        <div class="camera-container">
+            <video id="video" autoplay playsinline aria-label="Camera feed"></video>
+        </div>
+        
+        <button id="scan-button" aria-label="Scan product" onclick="capture()">Scan</button>
+        <canvas id="canvas"></canvas>
 
-    <!-- Product Details Box -->
-    <div id="result-box">
-        <h3>Product Details</h3>
-        <p id="result-text">Ready to Scan...</p>
-    </div>
+        <div id="result-box" role="region" aria-live="polite">
+            <h3>Product Details</h3>
+            <p id="result-text">Ready to scan...</p>
+        </div>
+
+        <div class="gcse-search" aria-label="Product search"></div>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 ProdScan. All rights reserved.</p>
+    </footer>
 
     <!-- Google Programmable Search Engine -->
     <script async src="https://cse.google.com/cse.js?cx=66eb8e930e15d4758"></script>
-    <div class="gcse-search"></div>
 
     <script>
         const video = document.getElementById('video');
@@ -70,39 +156,83 @@
         const context = canvas.getContext('2d');
         const resultBox = document.getElementById('result-box');
         const resultText = document.getElementById('result-text');
+        let stream = null;
 
         async function startCamera() {
             try {
-                const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
+                stream = await navigator.mediaDevices.getUserMedia({ 
+                    video: { 
+                        facingMode: "environment",
+                        width: { ideal: 1280 },
+                        height: { ideal: 720 }
+                    } 
+                });
                 video.srcObject = stream;
+                video.onloadedmetadata = () => {
+                    video.play();
+                };
             } catch (err) {
-                alert("Camera access denied or not supported: " + err);
+                console.error("Camera error:", err);
+                resultBox.style.display = "block";
+                resultText.innerHTML = "Could not access the camera. Please ensure you've granted camera permissions and try again.";
+                resultText.classList.add('error');
             }
         }
 
         function capture() {
+            if (!stream) {
+                resultBox.style.display = "block";
+                resultText.innerHTML = "Camera not ready. Please wait...";
+                return;
+            }
+
             resultBox.style.display = "block";
-            resultText.innerText = "Scanning...";
+            resultText.innerHTML = '<span class="loading">Scanning product...</span>';
+            
+            // Set canvas dimensions to match video stream
             canvas.width = video.videoWidth;
             canvas.height = video.videoHeight;
-            context.drawImage(video, 0, 0);
-            const imageData = canvas.toDataURL('image/png');
+            
+            // Capture frame
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            
+            // Convert to JPEG with 80% quality to reduce file size
+            const imageData = canvas.toDataURL('image/jpeg', 0.8);
             sendToServer(imageData);
         }
 
         async function sendToServer(imageData) {
-            const response = await fetch('/scan', {
-                method: 'POST',
-                body: JSON.stringify({ image: imageData }),
-                headers: { 'Content-Type': 'application/json' }
-            });
+            try {
+                const response = await fetch('/scan', {
+                    method: 'POST',
+                    body: JSON.stringify({ image: imageData }),
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                });
 
-            const result = await response.json();
-            resultText.innerHTML = result.message;
+                if (!response.ok) {
+                    throw new Error(`Server error: ${response.status}`);
+                }
+
+                const result = await response.json();
+                resultText.innerHTML = result.message || "No product information found.";
+            } catch (error) {
+                console.error("Scan error:", error);
+                resultText.innerHTML = "Scan failed. Please try again.";
+            }
         }
 
+        // Clean up camera stream when page is unloaded
+        window.addEventListener('beforeunload', () => {
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+            }
+        });
+
         // Start camera on page load
-        window.onload = startCamera;
+        document.addEventListener('DOMContentLoaded', startCamera);
     </script>
 </body>
 </html>
