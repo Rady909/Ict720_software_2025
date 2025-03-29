@@ -51,7 +51,9 @@ Additionally, this system integrates a **Phone Recognition & Price Estimation Sy
 5. **Web UI Display**: Presents recognition results and pricing information to users.
 
 ---
+![Web UI](product_ws/Webui.png)
 
+---
 ## **Scan Results**
 When a user scans a product, the system displays the product details in real-time. Example result:
 
