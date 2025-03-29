@@ -120,7 +120,7 @@ The scanned product data is stored in an SQLite database with the following sche
 | **AI Model (Phone Recognition)** | EfficientNetB0 (TensorFlow/Keras) |
 | **Camera Access** | WebRTC API (Back Camera) |
 | **Secure Connection** | Ngrok (for HTTPS) |
-| **Product Data Retrieval** | Web Scraping / External APIs (Shopee, Lazada, GSM Arena) |
+| **Product Data Retrieval** | Web Scraping / External APIs |
 | **Hardware Integration** | 5Strack IoT Dev Kit WM8978 |
 
 ![hardware Result](product_ws/hardware.png)
