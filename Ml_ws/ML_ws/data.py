@@ -10,12 +10,12 @@ from bs4 import BeautifulSoup  # For HTML parsing
 from serpapi import GoogleSearch
 
 # --- Constants ---
-SERPAPI_KEY = "68ed55f4426268dbe3eb1f8b696dc9506fa1701dc7166daead211b3c06b66db9"  # Replace with your SerpApi key!
+SERPAPI_KEY = ""  # Replace with your SerpApi key!
 DATA_DIR = "image_data_serpapi"  # Use a different directory for SerpAPI data
 MAX_IMAGES_PER_MODEL = 10
 MIN_IMAGES_PER_MODEL = 5
 GOOGLE_SEARCH_API_KEY = "AIzaSyD6yOh1Wdh0RBz50EDYUNTNKBFcvnQNmMs"  # Replace!
-GOOGLE_SEARCH_ENGINE_ID = "66eb8e930e15d4758"  # Replace!
+GOOGLE_SEARCH_ENGINE_ID = ""  # Replace!
 GOOGLE_SEARCH_URL = "https://www.googleapis.com/customsearch/v1"
 
 # --- Phone Models ---
