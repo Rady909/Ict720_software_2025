@@ -53,10 +53,10 @@ def create_database():
 create_database()
 
 # --- API Keys and URLs (HARDCODED - FOR TESTING ONLY) ---
-GOOGLE_SEARCH_API_KEY = "AIzaSyD6yOh1Wdh0RBz50EDYUNTNKBFcvnQNmMs"  # YOUR GOOGLE SEARCH KEY
-GOOGLE_SEARCH_ENGINE_ID = "66eb8e930e15d4758"  # YOUR GOOGLE SEARCH ENGINE ID
+GOOGLE_SEARCH_API_KEY =""  # YOUR GOOGLE SEARCH KEY
+GOOGLE_SEARCH_ENGINE_ID = ""  # YOUR GOOGLE SEARCH ENGINE ID
 GOOGLE_SEARCH_URL = "https://www.googleapis.com/customsearch/v1"
-GEMINI_API_KEY = "AIzaSyAa3WEZZG_JnVmGGgFIlD9UtRaCRkKJa80" # YOUR GEMINI API KEY
+GEMINI_API_KEY = "" # YOUR GEMINI API KEY
 GEMINI_API_URL = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={GEMINI_API_KEY}"
 
 # --- Utility Functions ---
