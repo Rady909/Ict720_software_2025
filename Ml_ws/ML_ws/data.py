@@ -14,7 +14,7 @@ SERPAPI_KEY = ""  # Replace with your SerpApi key!
 DATA_DIR = "image_data_serpapi"  # Use a different directory for SerpAPI data
 MAX_IMAGES_PER_MODEL = 10
 MIN_IMAGES_PER_MODEL = 5
-GOOGLE_SEARCH_API_KEY = "AIzaSyD6yOh1Wdh0RBz50EDYUNTNKBFcvnQNmMs"  # Replace!
+GOOGLE_SEARCH_API_KEY = ""  # Replace!
 GOOGLE_SEARCH_ENGINE_ID = ""  # Replace!
 GOOGLE_SEARCH_URL = "https://www.googleapis.com/customsearch/v1"
 
